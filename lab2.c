@@ -132,7 +132,7 @@ int main(int argc, char** argv){
     rotarImagen(matrizRotada, dz->filasZoom, dz->columnasZoom, dato->grados);
 
     //Se escriben la imagen suavizada
-    escribirResultados(dato->imagenSalida, matrizRotada, dz->filasZoom, dz->columnasZoom);
+    escribirResultados(dato->imagenSalida, matrizRotada, dz->filasZoom, dz->columnasZoom, dato->grados);
 
 /**/
 

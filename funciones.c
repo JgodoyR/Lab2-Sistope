@@ -119,51 +119,84 @@ void suavizarImagen(float** matrizConZoom, int filasZ, int columnasZ){
 }
 
 /*
-Entradas: 
-Funcionamiento: 
+Entradas: Matriz x Filas de la imagen con zoom x Columnas de la imagen con zoom x Grados de rotacion de la imagen
+Funcionamiento: Funcion que rota la imagen suavizada, almacenando los valores de la matriz suavizado en otras filas/columnas de la
+                matriz rotada. Se realiza un switch case para ver que rotacion se hara a la matriz y luego dependiendo del caso se le
+                asigna memoria a la matriz (de manera distinta para 0/180 y 90/270).
 Salida: No tiene
 */
 void rotarImagen(float** matrizConRotacion, int filasZ, int columnasZ, int rotacion){
 
-    //Se le asigna memoria a la matriz rotada
-    matrizRotada = (float **)malloc(filasZ * sizeof(float*));
-    for(int i = 0; i < filasZ; i++){
-        matrizRotada[i] = (float *)malloc(columnasZ * sizeof(float));
-    }
-
     switch(rotacion){
+
         case 0:
+
+            //Se le asigna memoria a la matriz rotada
+            matrizRotada = (float **)malloc(filasZ * sizeof(float*));
+            for(int i = 0; i < filasZ; i++){
+                matrizRotada[i] = (float *)malloc(columnasZ * sizeof(float));
+            }
+
             //Rotacion 0°
             for(int i = 0; i < filasZ; i++){
                 for(int j = 0; j < columnasZ; j++){
                     matrizRotada[i][j] = matrizSuavizada[i][j];
                 }
             }
+
             break;
+
         case 90:
+
+            //Se le asigna memoria a la matriz rotada
+            matrizRotada = (float **)malloc(columnasZ * sizeof(float*));
+            for(int i = 0; i < columnasZ; i++){
+                matrizRotada[i] = (float *)malloc(filasZ * sizeof(float));
+            }
+
             //Rotacion 90°
             for(int i = 0; i < filasZ; i++){
                 for(int j = 0; j < columnasZ; j++){
                     matrizRotada[j][filasZ-i-1] = matrizSuavizada[i][j];
                 }
             }
+
             break;
+
         case 180:
+
+            //Se le asigna memoria a la matriz rotada
+            matrizRotada = (float **)malloc(filasZ * sizeof(float*));
+            for(int i = 0; i < filasZ; i++){
+                matrizRotada[i] = (float *)malloc(columnasZ * sizeof(float));
+            }
+
             //Rotacion 180°
             for(int i = 0; i < filasZ; i++){
                 for(int j = 0; j < columnasZ; j++){
                     matrizRotada[filasZ-i-1][columnasZ-j-1] = matrizSuavizada[i][j];
                 }
             }
+
             break;
+
         case 270:
+
+            //Se le asigna memoria a la matriz rotada
+            matrizRotada = (float **)malloc(columnasZ * sizeof(float*));
+            for(int i = 0; i < columnasZ; i++){
+                matrizRotada[i] = (float *)malloc(filasZ * sizeof(float));
+            }
+
             //Rotacion 270°
             for(int i = 0; i < filasZ; i++){
                 for(int j = 0; j < columnasZ; j++){
                     matrizRotada[columnasZ-j-1][i] = matrizSuavizada[i][j];
                 }
             }
+
             break;
+
     }
     
 }

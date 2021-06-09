@@ -74,14 +74,21 @@ Entradas: Nombre del archivo de salida x Matriz a escribir x Filas de la imagen 
 Funcionamiento: Funcion que escribe un archivo en formato ".raw" con el contenido de una matriz
 Salida: No tiene
 */
-void escribirResultados(char* nombre, float** matrizConZoom, int filasZ, int columnasZ){
+void escribirResultados(char* nombre, float** matrizConZoom, int filasZ, int columnasZ, int rotacion){
 
     FILE* archivo = fopen(nombre, "wb");
 
     //Se recorre la matriz y se escribe en un archivo binario el contenido de esta
-    for(int z = 0; z < filasZ; z++){
-        fwrite(matrizConZoom[z], sizeof(float), columnasZ, archivo);
+    if(rotacion == 90 || rotacion == 270){
+        for(int z = 0; z < columnasZ; z++){
+            fwrite(matrizConZoom[z], sizeof(float), filasZ, archivo);
+        }
     }
+    else{
+        for(int z = 0; z < filasZ; z++){
+            fwrite(matrizConZoom[z], sizeof(float), columnasZ, archivo);
+        }
+    }  
 
     fclose(archivo);
 

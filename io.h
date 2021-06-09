@@ -7,6 +7,6 @@ void flag(int band, int filasZ, int columnasZ);
 
 void leerImagen(char* entrada, int filas, int columnas);
 
-void escribirResultados(char* nombre, float** matrizConZoom, int filasZ, int columnasZ);
+void escribirResultados(char* nombre, float** matrizConZoom, int filasZ, int columnasZ, int rotacion);
 
 #endif
